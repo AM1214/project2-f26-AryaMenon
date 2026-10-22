@@ -1,0 +1,440 @@
+
+/* ---------- Global layout ---------- */
+
+#root {
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f3f6fa;
+  color: #172033;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+main {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 40px 28px 64px;
+}
+
+/* ---------- Page heading ---------- */
+
+main > h1 {
+  margin: 0;
+  padding: 28px 32px;
+  border-radius: 18px;
+  background: #142b4a;
+  color: #ffffff;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: -1px;
+}
+
+main > h2 {
+  margin: 32px 0 16px;
+  font-size: 1.7rem;
+  letter-spacing: -0.5px;
+}
+
+/* ---------- General buttons ---------- */
+
+button {
+  padding: 10px 16px;
+  border: 1px solid #d5deea;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #25354d;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+button:hover:not(:disabled) {
+  border-color: #8298b5;
+  transform: translateY(-1px);
+}
+
+button:focus-visible {
+  outline: 3px solid #8bb8ff;
+  outline-offset: 3px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* ---------- Train line selection ---------- */
+
+nav[aria-label="Train lines"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+nav[aria-label="Train lines"] button[aria-pressed="true"] {
+  border-color: #142b4a;
+  background: #142b4a;
+  color: #ffffff;
+}
+
+nav[aria-label="Train lines"] button:nth-child(1)[aria-pressed="true"] {
+  border-color: #0879c9;
+  background: #0879c9;
+}
+
+nav[aria-label="Train lines"] button:nth-child(2)[aria-pressed="true"] {
+  border-color: #b98700;
+  background: #b98700;
+}
+
+nav[aria-label="Train lines"] button:nth-child(3)[aria-pressed="true"] {
+  border-color: #c83e49;
+  background: #c83e49;
+}
+
+nav[aria-label="Train lines"] button:nth-child(4)[aria-pressed="true"] {
+  border-color: #16845b;
+  background: #16845b;
+}
+
+/* ---------- Station navigation ---------- */
+
+nav[aria-label="Stations"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 28px;
+  padding: 18px;
+  border: 1px solid #e0e7f0;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+nav[aria-label="Stations"] button {
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.84rem;
+}
+
+nav[aria-label="Stations"] button[aria-pressed="true"] {
+  border-color: #142b4a;
+  background: #142b4a;
+  color: #ffffff;
+}
+
+/* ---------- Filters ---------- */
+
+section[aria-label="Train filters"] {
+  margin: 24px 0;
+  padding: 22px;
+  border: 1px solid #e0e7f0;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+section[aria-label="Train filters"] h3 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+}
+
+section[aria-label="Train filters"] h3:not(:first-child) {
+  margin-top: 22px;
+}
+
+section[aria-label="Train filters"] button {
+  margin: 0 8px 8px 0;
+}
+
+section[aria-label="Train filters"] button[aria-pressed="true"] {
+  border-color: #1769aa;
+  background: #e5f1ff;
+  color: #124d80;
+}
+
+section[aria-label="Train filters"] p {
+  margin: 12px 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* ---------- Train cards ---------- */
+
+.train-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.train-card {
+  padding: 22px;
+  border: 1px solid #e0e7f0;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 3px 12px rgb(22 42 70 / 5%);
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.train-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgb(22 42 70 / 10%);
+}
+
+.train-card h3 {
+  margin: 0 0 16px;
+  color: #142b4a;
+  font-size: 1.15rem;
+}
+
+.train-card p {
+  margin: 10px 0;
+  color: #526176;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.train-card p:last-child {
+  margin-top: 16px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #e7f6ed;
+  color: #176b42;
+  font-weight: 700;
+}
+
+/* ---------- Loading, errors, empty states ---------- */
+
+main > p,
+main > section > p {
+  line-height: 1.6;
+}
+
+main > p[role="alert"] {
+  padding: 16px;
+  border-radius: 10px;
+  background: #fff0f0;
+  color: #a52626;
+}
+
+/* ---------- Smaller screens ---------- */
+
+@media (max-width: 600px) {
+  main {
+    padding: 20px 14px 40px;
+  }
+
+  main > h1 {
+    padding: 24px 20px;
+  }
+
+  nav[aria-label="Stations"] {
+    padding: 12px;
+  }
+
+  section[aria-label="Train filters"] {
+    padding: 16px;
+  }
+
+  .train-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.train-card .status-on-time,
+.train-card .status-delayed {
+  margin-top: 16px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.train-card .status-on-time {
+  background: #e7f6ed;
+  color: #176b42;
+}
+
+.train-card .status-delayed {
+  background: #fff0e8;
+  color: #a84318;
+}
+
+/* ---------- Home and About pages ---------- */
+
+.info-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.hero {
+  padding: 36px;
+  border-radius: 18px;
+  background: #142b4a;
+  color: #ffffff;
+}
+
+.hero h1 {
+  margin: 8px 0 12px;
+  color: #ffffff;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -1px;
+}
+
+.hero > p:last-child {
+  max-width: 650px;
+  color: #e0e9f5;
+  line-height: 1.7;
+}
+
+.hero .eyebrow {
+  color: #a9c9ef;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.info-section {
+  padding: 26px;
+  border: 1px solid #e0e7f0;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.info-section h2 {
+  margin: 0 0 12px;
+  color: #142b4a;
+}
+
+.info-section > p {
+  margin-bottom: 16px;
+  color: #526176;
+  line-height: 1.7;
+}
+
+.line-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.line-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid #e0e7f0;
+  border-left: 6px solid;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #172033;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.line-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgb(22 42 70 / 9%);
+}
+
+.line-blue {
+  border-left-color: #0879c9;
+}
+
+.line-gold {
+  border-left-color: #b98700;
+}
+
+.line-red {
+  border-left-color: #c83e49;
+}
+
+.line-green {
+  border-left-color: #16845b;
+}
+
+.primary-link,
+.back-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #1769aa;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.primary-link:hover,
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.map-container {
+  overflow: hidden;
+  margin: 20px 0;
+  border: 1px solid #e0e7f0;
+  border-radius: 12px;
+  background: #f3f6fa;
+}
+
+.map-container iframe {
+  display: block;
+  width: 100%;
+  height: 600px;
+  border: 0;
+}
+
+.back-link {
+  align-self: flex-start;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 24px;
+  }
+
+  .info-section {
+    padding: 18px;
+  }
+
+  .line-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .map-container iframe {
+    height: 400px;
+  }
+}
+
+.train-card .status-on-time,
+.train-card .status-delayed {
+  margin-top: 16px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.train-card .status-on-time {
+  background: #e7f6ed;
+  color: #176b42;
+}
+
+.train-card .status-delayed {
+  background: #fff0e8;
+  color: #a84318;
+}
